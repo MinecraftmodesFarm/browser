@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: secretbrowser
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      # Add OPENAI_API_KEY in Render dashboard only if you want live AI.

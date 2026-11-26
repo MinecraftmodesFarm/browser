@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101114">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/icon.svg">
+  <meta name="description" content="SecretBrowser — privacy tools and a clean web browsing workspace.">
+  <title>SecretBrowser</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" id="homeBrand" aria-label="SecretBrowser home">
+        <span class="brand-mark">S</span><span>Secret<span class="brand-accent">Browser</span></span>
+      </a>
+      <div class="top-actions">
+        <span class="status-dot"></span><span class="status-text">PRIVATE BY DESIGN</span>
+        <button class="icon-btn" id="settingsOpen" title="Settings" aria-label="Settings">⚙</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="browser-card">
+        <div class="browser-toolbar">
+          <div class="nav-buttons">
+            <button class="icon-btn" id="backBtn" title="Back" aria-label="Back">←</button>
+            <button class="icon-btn" id="forwardBtn" title="Forward" aria-label="Forward">→</button>
+            <button class="icon-btn" id="reloadBtn" title="Reload" aria-label="Reload">↻</button>
+            <button class="icon-btn" id="homeBtn" title="Home" aria-label="Home">⌂</button>
+          </div>
+          <form class="address-form" id="addressForm">
+            <span class="lock-icon">⌕</span>
+            <input id="addressInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Search Google or enter a website">
+            <button type="submit" class="go-btn">GO</button>
+          </form>
+          <button class="tab-count" id="newTabBtn" title="New tab">＋ <span id="tabCount">1</span></button>
+        </div>
+
+        <div class="tab-strip" id="tabStrip"></div>
+
+        <div class="welcome-view" id="welcomeView">
+          <div class="hero-orb">S</div>
+          <p class="eyebrow">YOUR WEB. YOUR CHOICE.</p>
+          <h1>Browse with<br><span>more control.</span></h1>
+          <p class="hero-copy">A simple browsing workspace with privacy tools, local bookmarks and Secret AI.</p>
+          <form class="search-form" id="mainSearchForm">
+            <span>⌕</span>
+            <input id="mainSearchInput" placeholder="Search Google or enter a URL" autocomplete="off">
+            <button type="submit">Search</button>
+          </form>
+          <div class="quick-links">
+            <button data-url="https://www.google.com">Google</button>
+            <button data-url="https://www.wikipedia.org">Wikipedia</button>
+            <button data-url="https://www.youtube.com">YouTube</button>
+          </div>
+          <div class="notice"><span>ⓘ</span> Some websites block embedding. Use <b>Open externally</b> when a page does not load.</div>
+        </div>
+
+        <div class="web-view hidden" id="webView">
+          <div class="web-preview-bar">
+            <span id="previewStatus">Website preview — some sites block embedding.</span>
+            <a id="externalLink" href="https://www.google.com" target="_blank" rel="noopener noreferrer">Open in Safari ↗</a>
+          </div>
+          <iframe id="pageFrame" title="Website preview" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe>
+        </div>
+      </section>
+
+      <section class="tool-grid">
+        <button class="tool-card" data-panel="privacy"><span class="tool-icon green">◈</span><span><b>Privacy Center</b><small>Private session & controls</small></span><span class="chevron">›</span></button>
+        <button class="tool-card" data-panel="cookies"><span class="tool-icon orange">◉</span><span><b>Cookie Manager</b><small>Manage this app's storage</small></span><span class="chevron">›</span></button>
+        <button class="tool-card" data-panel="device"><span class="tool-icon blue">▣</span><span><b>Device Inspector</b><small>See browser-visible details</small></span><span class="chevron">›</span></button>
+        <button class="tool-card" data-panel="bookmarks"><span class="tool-icon purple">☆</span><span><b>Bookmarks</b><small>Your saved links</small></span><span class="chevron">›</span></button>
+        <button class="tool-card" data-panel="ai"><span class="tool-icon pink">✧</span><span><b>Secret AI</b><small>Ask about privacy & browsing</small></span><span class="chevron">›</span></button>
+        <button class="tool-card" data-panel="settings"><span class="tool-icon gray">⚙</span><span><b>Advanced Settings</b><small>Appearance & preferences</small></span><span class="chevron">›</span></button>
+      </section>
+
+      <section class="bottom-row">
+        <div class="privacy-score">
+          <div><p class="eyebrow">LOCAL PRIVACY CHECK</p><h3 id="privacyScore">Good start</h3><p id="privacySummary">Review permissions and clear data you no longer need.</p></div>
+          <div class="score-ring"><span id="scoreNumber">72</span><small>/100</small></div>
+        </div>
+        <div class="disclaimer">SecretBrowser is a website, not a replacement for Safari. It cannot hide your iPhone identity from every website or control Safari's private browsing, system settings, or other apps.</div>
+      </section>
+    </main>
+    <footer>SECRETBROWSER <span>•</span> VERSION 1.0 <span>•</span> BUILT FOR MOBILE</footer>
+  </div>
+
+  <div class="overlay hidden" id="overlay">
+    <aside class="drawer">
+      <div class="drawer-head"><div><p class="eyebrow" id="panelEyebrow">CONTROL PANEL</p><h2 id="panelTitle">Privacy Center</h2></div><button class="icon-btn" id="closePanel" aria-label="Close">×</button></div>
+      <div id="panelContent"></div>
+    </aside>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
